@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-configuration PUBLIC "-//Hibernate/Hibernate Configuration DTD//EN"
+"http://www.hibernate.org/dtd/hibernate-configuration-3.0.dtd">
+<hibernate-configuration>
+	<session-factory>
+		<property name="connection.driver_class">com.mysql.jdbc.Driver</property>
+		<property name="connection.url">jdbc:mysql://172.17.0.2:3306/docker_database_hibernate?useSSL=false</property>
+		<property name="connection.username">root</property>
+		<property name="connection.password">root</property>
+		
+		<property name="dialect">org.hibernate.dialect.MySQL5Dialect</property>
+		<property name="hbm2ddl.auto">update</property>
+		<property name="show_sql">true</property>
+		<property name="format_sql">true</property>
+		
+		<!-- Second level cache configuration -->
+<!-- 		<property name="cache.use_second_level_cache">true</property> -->
+<!-- 		<property name="cache.region.factory_class">org.hibernate.cache.ehcache.EhCacheRegionFactory</property> -->
+<!-- 		<property name="javax.cache.provider">net.sf.ehcache.hibernate.EhCacheProvider</property> -->
+<!-- 		<property name="net.sf.ehcache.configurationResourceName">com/rs/hibernate/cfgs/ehcache.xml</property> -->
+<!-- 		<property name="cache.use_query_cache">true</property> -->
+		
+		<property name="net.sf.ehcache.configurationResourceName">com/rs/hibernate/cfgs/ehcache.xml</property>
+		<property name="cache.region.factory_class">org.hibernate.cache.EhCacheRegionFactory</property>
+		<property name="cache.use_second_level_cache">true</property>
+		<property name="cache.use_query_cache">true</property>
+		
+		<mapping class="com.rs.hibernate.domain.Employee" />
+		<mapping class="com.rs.hibernate.domain.Department"/>
+	</session-factory>
+</hibernate-configuration>
